@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Navigate, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_BUSINESS } from '../utils/mutations'
@@ -11,12 +10,11 @@ import {
   Container
 } from 'react-bootstrap';
 
-// const imageStyle = {width: "150px", height: "150px"};
 
 const Profile = () => {
 
   const { loading, data } = useQuery(QUERY_ME);
-  const [removeBusiness, { error }] = useMutation(REMOVE_BUSINESS);
+  const [removeBusiness] = useMutation(REMOVE_BUSINESS);
 
   const user = data?.me || {};
 
@@ -50,7 +48,6 @@ const Profile = () => {
       throw new Error(err.message);
     }
   };
-console.log(user.businesses)
   return (
     <div>
       <Container>
