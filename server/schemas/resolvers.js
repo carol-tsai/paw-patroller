@@ -5,7 +5,6 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     user: async (parent, { username }) => {
-      console.log('got to user query')
       return User.findOne({ username }).populate('businesses');
     },
     me: async (parent, args, context) => {
@@ -46,7 +45,6 @@ const resolvers = {
       return { token, user };
     },
     addBusiness: async (parent, { name, yelpId, url, location, imgUrl }, context) => {
-      console.log('got to addBusiness mutation')
       if (context.user) {
         let business = await Business.findOne({yelpId})
         if(!business) {
